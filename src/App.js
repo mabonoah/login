@@ -1,9 +1,11 @@
 import * as React from 'react';
+import Container from '@material-ui/core/Container';
 
 function App() {
   return (
     <React.Fragment>
-      Hello
+      <Container>
+      </Container>
     </React.Fragment>
   );
 }
