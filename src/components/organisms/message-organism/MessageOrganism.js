@@ -1,12 +1,8 @@
+import { MessageTypes } from "../../../enums";
 import { MaterialIcon, ButtonTag, TypographyTag } from "../../atoms";
-import "./Message.scss";
+import "./MessageOrganism.scss";
 
-export const MessageTypes = Object.freeze({
-  Success: "success",
-  Fail: "fail",
-});
-
-export const Message = ({ type = MessageTypes.Success, onClick }) => {
+export const MessageOrganism = ({ type = MessageTypes.Success, onClick }) => {
   const Colors = Object.freeze({
     Success: "#02bd9e",
     Fail: "#f1606f",

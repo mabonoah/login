@@ -1,20 +1,22 @@
 import { ButtonTag, TypographyTag } from "../../atoms";
 import { TextFieldTag } from "../../molecules/TextFieldTag";
-import "./Login.scss";
+import "./LoginForm.scss";
 
-export const Login = ({
+export const LoginForm = ({
   EmailValue,
   passwordValue,
   onChangeEmail,
   onChangePassword,
   onSubmit,
 }) => (
-  <form onSubmit={onSubmit} className="login-form">
-    <TypographyTag className="title" variant="h4">
+  <form onSubmit={onSubmit} className="form">
+    <TypographyTag className="form-title" variant="h4">
       Login
     </TypographyTag>
     <TextFieldTag
       className="login-field"
+      name="email"
+      type="text"
       value={EmailValue}
       onChange={onChangeEmail}
       label="Email"
@@ -23,6 +25,8 @@ export const Login = ({
     ></TextFieldTag>
     <TextFieldTag
       className="login-field"
+      name="password"
+      type="password"
       value={passwordValue}
       onChange={onChangePassword}
       label="Password"
