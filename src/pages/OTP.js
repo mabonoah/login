@@ -8,6 +8,16 @@ export class OTP extends Component {
     this.state = { otp: "" };
   }
 
+  render() {
+    return (
+      <OTPTemplate
+        value={this.state.otp}
+        onChange={this.handleChange}
+        onSubmit={this.handleSubmit}
+      ></OTPTemplate>
+    );
+  }
+
   handleChange = (e) => {
     // clone
     const state = { ...this.state };
@@ -21,14 +31,4 @@ export class OTP extends Component {
     e.preventDefault();
     this.props.onVerifyOTP(MessageTypes.Fail);
   };
-
-  render() {
-    return (
-      <OTPTemplate
-        value={this.state.otp}
-        onChange={this.handleChange}
-        onSubmit={this.handleSubmit}
-      ></OTPTemplate>
-    );
-  }
 }

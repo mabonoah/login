@@ -9,6 +9,7 @@ export const OTPForm = ({ value, onChange, onSubmit }) => (
     </TypographyTag>
     <TextFieldTag
       name="otp"
+      type="number"
       className="otp-field"
       value={value}
       onChange={onChange}

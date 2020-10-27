@@ -1,10 +1,37 @@
 import React, { Component } from "react";
 import { LoginTemplate } from "./../components/templates";
 
+const Joi = require("joi");
+
 export class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { email: "", password: "" };
+    this.state = { email: "", password: "", errors: {} };
+  }
+
+  schema = Joi.object({
+    email: Joi.string()
+      .email({
+        minDomainSegments: 2,
+        tlds: { allow: ["com", "net"] },
+      })
+      .required(),
+    password: Joi.string().required(),
+  });
+
+  render() {
+    return (
+      <LoginTemplate
+        emailValue={this.state.email}
+        emailError={this.state.errors.email}
+        passwordValue={this.state.password}
+        passwordError={this.state.errors.password}
+        invalidCredentialsError={this.state.errors.invalidCredentials}
+        onChangeEmail={this.handleChange}
+        onChangePassword={this.handleChange}
+        onSubmit={this.handleSubmit}
+      ></LoginTemplate>
+    );
   }
 
   handleChange = (e) => {
@@ -18,18 +45,43 @@ export class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    const errors = this.validate();
+    if (errors) return;
     this.props.onSuccessLogin();
   };
 
-  render() {
+  validate = () => {
+    const errors = {};
+    // clone
+    const state = { ...this.state };
+    // edit
+    delete state.errors;
+    const res = this.schema.validate(state, { abortEarly: false });
+    const isValidCredentials = this.validateCredentials();
+    if (!res.error && isValidCredentials) {
+      this.setState({ errors: {} });
+      return null;
+    } else if (!res.error && !isValidCredentials) {
+      errors["invalidCredentials"] = "Invalid Email or Password";
+    } else {
+      for (const error of res.error.details) {
+        errors[error.path] = this.renameErrorMessage(error.message);
+      }
+    }
+    // set State
+    this.setState({ errors });
+    return errors;
+  };
+
+  validateCredentials = () => {
     return (
-      <LoginTemplate
-        EmailValue={this.state.email}
-        passwordValue={this.state.password}
-        onChangeEmail={this.handleChange}
-        onChangePassword={this.handleChange}
-        onSubmit={this.handleSubmit}
-      ></LoginTemplate>
+      this.state.email.trim() === "m.ali@gmail.com" &&
+      this.state.password.trim() === "12345"
     );
-  }
+  };
+
+  renameErrorMessage = (message) => {
+    if (message.includes("empty")) return "Required";
+    return "Invalid Email";
+  };
 }

@@ -26,7 +26,7 @@
     }
 
     .message-btn {
-        margin: 15px 0 20px 0;
+        margin: 15px 0;
     }
 }
 
@@ -44,6 +44,10 @@
             .icon {
                 font-size: 60px;
             }
+        }
+
+        .message-btn {
+            margin: 10px 0;
         }
     }
 }
