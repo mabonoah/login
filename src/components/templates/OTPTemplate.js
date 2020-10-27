@@ -1,5 +1,17 @@
 import { OTPForm } from "../organisms";
 
-export const OTPTemplate = ({ value, onChange, onSubmit }) => (
-  <OTPForm value={value} onChange={onChange} onSubmit={onSubmit}></OTPForm>
+export const OTPTemplate = ({
+  value,
+  otpNumber,
+  onChange,
+  error,
+  onSubmit,
+}) => (
+  <OTPForm
+    value={value}
+    otpNumber={otpNumber}
+    onChange={onChange}
+    error={error}
+    onSubmit={onSubmit}
+  ></OTPForm>
 );

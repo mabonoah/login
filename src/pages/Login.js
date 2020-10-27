@@ -54,6 +54,7 @@ export class Login extends Component {
     const errors = {};
     // clone
     const state = { ...this.state };
+
     // edit
     delete state.errors;
     const res = this.schema.validate(state, { abortEarly: false });
@@ -68,6 +69,7 @@ export class Login extends Component {
         errors[error.path] = this.renameErrorMessage(error.message);
       }
     }
+
     // set State
     this.setState({ errors });
     return errors;

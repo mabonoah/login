@@ -1,8 +1,8 @@
 import { ButtonTag, TypographyTag } from "../../atoms";
-import { TextFieldTag } from "../../molecules/TextFieldTag";
+import { TextFieldTag } from "../../molecules";
 import "./OTPForm.scss";
 
-export const OTPForm = ({ value, onChange, onSubmit }) => (
+export const OTPForm = ({ value, otpNumber, onChange, error, onSubmit }) => (
   <form onSubmit={onSubmit} className="form">
     <TypographyTag className="form-title" variant="h4">
       Enter OTP
@@ -12,11 +12,15 @@ export const OTPForm = ({ value, onChange, onSubmit }) => (
       type="number"
       className="otp-field"
       value={value}
+      placeholder={`${otpNumber}`}
       onChange={onChange}
+      error={error ? true : false}
+      errorMessage={error}
       label="OTP"
       variant="outlined"
-      placeholder="123456"
     ></TextFieldTag>
-    <ButtonTag type="submit">Verify</ButtonTag>
+    <ButtonTag className="otp-submit" type="submit">
+      Verify
+    </ButtonTag>
   </form>
 );

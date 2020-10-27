@@ -1,10 +1,22 @@
-.form .otp-field {
-    margin: 10px 0 25px 0;
+.form {
+    .otp-field {
+        margin-top: 10px;
+    }
+
+    .otp-submit {
+        margin-top: 20px;
+    }
 }
 
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
-    .form .otp-field {
-        margin: 8px 0 20px 0;
+    .form {
+        .otp-field {
+            margin-top: 8px;
+        }
+
+        .otp-submit {
+            margin-top: 15px;
+        }
     }
 }
