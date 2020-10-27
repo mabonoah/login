@@ -77,7 +77,7 @@ export class Login extends Component {
 
   validateCredentials = () => {
     return (
-      this.state.email.trim() === "m.ali@gmail.com" &&
+      this.state.email.trim().toLowerCase() === "m.ali@gmail.com" &&
       this.state.password.trim() === "12345"
     );
   };
