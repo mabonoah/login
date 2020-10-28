@@ -1,2 +1,2 @@
-# connect
-A responsive demo using React.js
+# login
+A responsive login demo using React.js and Atomic Design.
