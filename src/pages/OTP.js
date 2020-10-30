@@ -61,7 +61,9 @@ export class OTP extends Component {
       return null;
     }
 
-    errors.otp = "Must be a six digits";
+    this.state.otp.length === 0
+      ? (errors.otp = "Required")
+      : (errors.otp = "Must be a six digits");
 
     // set State
     this.setState({ errors });
